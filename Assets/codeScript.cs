@@ -25,15 +25,15 @@ public class codeScript : MonoBehaviour {
 		total = nrResources.Length;
 		//total_ = GetComponent<UnityEngine.UI.Text>();
 		//total_.text= total.ToString();
-		imageQuantity.text = total.ToString();
+		imageQuantity.text = total.ToString() + " " + nrResources[0].ToString();
 		Debug.Log("Image Length= " + total.ToString());
 
-		imageGO.sprite = Resources.Load<Sprite> (nrResources[0].ToString());
+		Sprite newSprite = Sprite.Create (nrResources[0] as Texture2D, new Rect(0,0,1247,2048), new Vector2(0,0));
+		imageGO.sprite = newSprite;
 
 
 		//imageGO.sprite = nrResources [0];
-		Debug.Log("nrResources: " + nrResources[0] );
-
+		Debug.Log("nrResources: " + nrResources[0].ToString() );
 
 		//Texture2D textura = Resources.Load("imagem (1)", typeof(Texture2D)) as Texture2D;
 		//Sprite newSprite = Sprite.Create (nrResources[0], new Rect(0,0,1247,2048), new Vector2(0,0));
