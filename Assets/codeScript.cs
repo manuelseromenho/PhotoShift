@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class codeScript : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class codeScript : MonoBehaviour {
 	//public Text total_;
 	public Text imageQuantity;
 
+	private SpriteRenderer mySpriteRenderer;
+
 
 	void Start()
 	{
@@ -21,19 +24,62 @@ public class codeScript : MonoBehaviour {
 		i=1;
 		j = 0;
 
+		int k = 0, m = 0;
+
 		Object[] nrResources = Resources.LoadAll("");
+		//GameObject testImage = Instantiate(Resources.Load("imagem (1)", typeof(GameObject))) as GameObject;
+
+		/*
+		 * //Criar GameObject em RunTime
+		GameObject testImage = new GameObject ();
+		testImage.AddComponent<SpriteRenderer>();
+		SpriteRenderer rend = (SpriteRenderer)testImage.GetComponent("SpriteRenderer");
+		rend.sprite = Resources.Load<Sprite> ("imagem (1)");
+		//testImage.transform.Rotate(0,20,0);
+		rend.flipX = true;
+		imageGO1.sprite = rend.sprite;
+		*/
+
+		//Object[] nrResources = Instantiate(Resources.Load("", typeof(GameObject))) as GameObject;
 		total = nrResources.Length;
+
+		/*Object[,] resourcesTransformed;
+
+		for (k = 0; k < total; k++) 
+		{
+			resourcesTransformed [k, 1] = nrResources [k];
+		}*/
+
+
+		//mySpriteRenderer
+
+
 		//total_ = GetComponent<UnityEngine.UI.Text>();
 		//total_.text= total.ToString();
 		imageQuantity.text = total.ToString() + " " + nrResources[0].ToString();
 		Debug.Log("Image Length= " + total.ToString());
 
-		Sprite newSprite = Sprite.Create (nrResources[0] as Texture2D, new Rect(0,0,1247,2048), new Vector2(0,0));
-		imageGO.sprite = newSprite;
+		/*Texture2D tex = nrResources[0] as Texture2D;
+		Sprite newSprite = Sprite.Create (nrResources[0] as Texture2D, new Rect(0,0,tex.width,tex.height), new Vector2(0,0));
+		imageGO.sprite = newSprite;*/
 
+		Texture2D texi = nrResources[4] as Texture2D;
+		SetTextureImporterFormat (texi,true);
+
+		Sprite newSprite2 = Sprite.Create (FlipTexture(texi) as Texture2D, new Rect(0,0,texi.width,texi.height), new Vector2(0,0));
+		imageGO1.sprite = newSprite2;
+
+
+
+
+		/*for (k = 0; k < total; k++) 
+		{
+			resourcesTransformed[k,0] = nrResources[k];
+		}
+*/
 
 		//imageGO.sprite = nrResources [0];
-		Debug.Log("nrResources: " + nrResources[0].ToString() );
+
 
 		//Texture2D textura = Resources.Load("imagem (1)", typeof(Texture2D)) as Texture2D;
 		//Sprite newSprite = Sprite.Create (nrResources[0], new Rect(0,0,1247,2048), new Vector2(0,0));
@@ -67,6 +113,51 @@ public class codeScript : MonoBehaviour {
 		i = i + 1;		
 	}
 
+	Texture2D FlipTexture(Texture2D original, bool upSideDown = true)
+	{
+
+		Texture2D flipped = new Texture2D(original.width, original.height);
+
+		int xN = original.height;
+		int yN = original.width;
+
+
+		for (int i = 0; i < xN; i++)
+		{
+			for (int j = 0; j < yN; j++)
+			{
+				if (upSideDown)
+				{
+					flipped.SetPixel(j, xN - i - 1, original.GetPixel(j, i));
+				}
+				else
+				{
+					flipped.SetPixel(xN - i - 1, j, original.GetPixel(i, j));
+				}
+			}
+		}
+		flipped.Apply();
+
+		return flipped;
+	}
+
+
+	public static void SetTextureImporterFormat( Texture2D texture, bool isReadable)
+	{
+		if ( null == texture ) return;
+
+		string assetPath = AssetDatabase.GetAssetPath( texture );
+		var tImporter = AssetImporter.GetAtPath( assetPath ) as TextureImporter;
+		if ( tImporter != null )
+		{
+			tImporter.textureType = TextureImporterType.Default;
+
+			tImporter.isReadable = isReadable;
+
+			AssetDatabase.ImportAsset( assetPath );
+			AssetDatabase.Refresh();
+		}
+	}
 
 
 
