@@ -24,7 +24,8 @@ public class codeScript : MonoBehaviour {
 		i=1;
 		j = 0;
 
-		int k = 0, m = 0;
+		int transformacao = 1;
+
 
 		Object[] nrResources = Resources.LoadAll("");
 		//GameObject testImage = Instantiate(Resources.Load("imagem (1)", typeof(GameObject))) as GameObject;
@@ -63,10 +64,10 @@ public class codeScript : MonoBehaviour {
 		Sprite newSprite = Sprite.Create (nrResources[0] as Texture2D, new Rect(0,0,tex.width,tex.height), new Vector2(0,0));
 		imageGO.sprite = newSprite;*/
 
-		Texture2D texi = nrResources[4] as Texture2D;
+		Texture2D texi = nrResources[1] as Texture2D;
 		SetTextureImporterFormat (texi,true);
 
-		Sprite newSprite2 = Sprite.Create (FlipTexture(texi) as Texture2D, new Rect(0,0,texi.width,texi.height), new Vector2(0,0));
+		Sprite newSprite2 = Sprite.Create (TranformTexture(texi, transformacao) as Texture2D, new Rect(0,0,texi.width,texi.height), new Vector2(0,0));
 		imageGO1.sprite = newSprite2;
 
 
@@ -113,35 +114,92 @@ public class codeScript : MonoBehaviour {
 		i = i + 1;		
 	}
 
-	Texture2D FlipTexture(Texture2D original, bool upSideDown = true)
+	//girar textura
+	Texture2D TranformTexture(Texture2D original, int transformacao)
 	{
 
-		Texture2D flipped = new Texture2D(original.width, original.height);
+		Texture2D imagem = new Texture2D(original.width, original.height);
 
-		int xN = original.height;
-		int yN = original.width;
+		int imgHeight = original.height;
+		int imgWidth= original.width;
 
-
-		for (int i = 0; i < xN; i++)
+		switch (transformacao) 
 		{
-			for (int j = 0; j < yN; j++)
+
+			case 0:
+				//sem transformação
+				break;
+			case 1:
+				//Mirror Horizontal
+				for (int i = 0; i < imgHeight; i++)
+				{
+					for (int j = 0; j < imgWidth; j++)
+					{
+						imagem.SetPixel(j, imgHeight - i - 1, original.GetPixel(j, i));
+					}
+				}
+				break;
+			case 2:
+				//Mirror Vertical
+				for (int j = 0; j < imgHeight; j++)
+				{
+					for (int i = 0; i < imgWidth; i++)
+					{
+						imagem.SetPixel(imgWidth-i-1, j, original.GetPixel(i, j));
+					}
+				}
+				break;
+			case 3:
+				//Rotation 180º
+				break;
+
+			//default:
+				//
+				//break;
+		
+		}
+
+
+		/*for (int i = 0; i < imgHeight; i++)
+		{
+			for (int j = 0; j < imgWidth; j++)
 			{
+				//caso esteja invertida 
 				if (upSideDown)
 				{
-					flipped.SetPixel(j, xN - i - 1, original.GetPixel(j, i));
+					flipped.SetPixel(j, imgHeight - i - 1, original.GetPixel(j, i));
 				}
 				else
 				{
-					flipped.SetPixel(xN - i - 1, j, original.GetPixel(i, j));
+					flipped.SetPixel(imgWidth - i - 1, j, original.GetPixel(i, j));
 				}
 			}
-		}
-		flipped.Apply();
+		}*/
 
-		return flipped;
+		/*for (int j = 0; j < yN; j++)
+		{
+			for (int i = 0; i < xN; i++)
+			{
+				flipped.SetPixel(j, yN - i - 1, original.GetPixel(j, i));
+
+			}
+		}*/
+
+		//flipped.SetPixel(j, yN - i - 1, original.GetPixel(j, i));
+
+
+
+
+
+
+
+
+		imagem.Apply();
+
+		return imagem;
 	}
 
-
+	//converter imagem em textura para posteriormente ser transformada
 	public static void SetTextureImporterFormat( Texture2D texture, bool isReadable)
 	{
 		if ( null == texture ) return;
