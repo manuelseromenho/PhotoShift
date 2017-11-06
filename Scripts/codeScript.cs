@@ -52,7 +52,7 @@ public class codeScript : MonoBehaviour {
 
 		//total_ = GetComponent<UnityEngine.UI.Text>();
 		//total_.text= total.ToString();
-		imageQuantity.text = total.ToString() + " " + nrResources[0].ToString();
+		//imageQuantity.text = total.ToString() + " " + nrResources[0].ToString();
 		Debug.Log("Image Length= " + total.ToString());
 
 		int nrSprites = 3;
