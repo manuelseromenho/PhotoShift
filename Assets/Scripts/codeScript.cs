@@ -16,8 +16,10 @@ public class codeScript : MonoBehaviour {
 	public int total;
 	//public Text total_;
 	public Text imageQuantity;
+	public testescript testeScript;
 
 	private SpriteRenderer mySpriteRenderer;
+
 
 
 
@@ -52,7 +54,7 @@ public class codeScript : MonoBehaviour {
 
 		//total_ = GetComponent<UnityEngine.UI.Text>();
 		//total_.text= total.ToString();
-		imageQuantity.text = total.ToString() + " " + nrResources[0].ToString();
+		//imageQuantity.text = total.ToString() + " " + nrResources[0].ToString();
 		Debug.Log("Image Length= " + total.ToString());
 
 		int nrSprites = 3;
@@ -65,17 +67,21 @@ public class codeScript : MonoBehaviour {
 		int transformacao = 1;
 
 
-		Sprite[] newSprite = new Sprite[nrSprites];
+		/*Sprite[] newSprite = new Sprite[nrSprites];
 
 		for (int k = 0; k < nrSprites; k++) 
 		{
 			texi [k] = nrResources [k] as Texture2D;
-			newSprite[k] = Sprite.Create (TranformTexture(texi[k], transformacao) as Texture2D, new Rect(0,0,texi[k].width,texi[k].height), new Vector2(0,0));
+			TextureScale.Bilinear (texi[i], texi[i].width/4, texi[i].height/4);
+			texi[i].Apply();
+
+
+			newSprite[k] = Sprite.Create (TransformTexture(texi[k], transformacao) as Texture2D, new Rect(0,0,texi[k].width,texi[k].height), new Vector2(0,0));
 		}
 
 		imageGO.sprite = newSprite [0];
 		imageGO1.sprite = newSprite [1];
-		imageGO2.sprite = newSprite [2];
+		imageGO2.sprite = newSprite [2];*/
 
 
 		/*Sprite newSprite1 = Sprite.Create (TranformTexture(texi1, transformacao) as Texture2D, new Rect(0,0,texi1.width,texi1.height), new Vector2(0,0));
@@ -97,6 +103,12 @@ public class codeScript : MonoBehaviour {
 
 	public void ClickToChange()
 	{
+		//testescript testeScript = FindObjectOfType(typeof(testescript));
+
+
+		//testescript testeScript = (testescript)this.GetComponent(typeof(testescript));
+		testeScript.Shifting ();
+
 
 
 		//Sprite[] newSprite = Sprite.Create (TranformTexture(texi, transformacao) as Texture2D, new Rect(0,0,texi[0].width,texi[].height), new Vector2(0,0));
@@ -113,7 +125,7 @@ public class codeScript : MonoBehaviour {
 
 
 	//girar textura
-	Texture2D TranformTexture(Texture2D original, int transformacao)
+	Texture2D TransformTexture(Texture2D original, int transformacao)
 	{
 
 		Texture2D imagem = new Texture2D(original.width, original.height);
