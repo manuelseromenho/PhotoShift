@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\back.cs" />
      <Compile Include="Assets\Scripts\codeScript.cs" />
+     <Compile Include="Assets\Scripts\GetAndSetText.cs" />
      <Compile Include="Assets\Scripts\go.cs" />
      <Compile Include="Assets\Scripts\testescript.cs" />
      <Compile Include="Assets\Scripts\TextureScale.cs" />

@@ -16,8 +16,10 @@ public class codeScript : MonoBehaviour {
 	public int total;
 	//public Text total_;
 	public Text imageQuantity;
+	public testescript testeScript;
 
 	private SpriteRenderer mySpriteRenderer;
+
 
 
 
@@ -30,8 +32,8 @@ public class codeScript : MonoBehaviour {
 		j = 0;
 
 
-		int nrLinhas = 0;
-		int nrColunas = 0;
+		//int nrLinhas = 0;
+		//int nrColunas = 0;
 
 
 
@@ -65,7 +67,7 @@ public class codeScript : MonoBehaviour {
 		int transformacao = 1;
 
 
-		Sprite[] newSprite = new Sprite[nrSprites];
+		/*Sprite[] newSprite = new Sprite[nrSprites];
 
 		for (int k = 0; k < nrSprites; k++) 
 		{
@@ -79,7 +81,7 @@ public class codeScript : MonoBehaviour {
 
 		imageGO.sprite = newSprite [0];
 		imageGO1.sprite = newSprite [1];
-		imageGO2.sprite = newSprite [2];
+		imageGO2.sprite = newSprite [2];*/
 
 
 		/*Sprite newSprite1 = Sprite.Create (TranformTexture(texi1, transformacao) as Texture2D, new Rect(0,0,texi1.width,texi1.height), new Vector2(0,0));
@@ -101,6 +103,12 @@ public class codeScript : MonoBehaviour {
 
 	public void ClickToChange()
 	{
+		//testescript testeScript = FindObjectOfType(typeof(testescript));
+
+
+		//testescript testeScript = (testescript)this.GetComponent(typeof(testescript));
+		testeScript.Shifting ();
+
 
 
 		//Sprite[] newSprite = Sprite.Create (TranformTexture(texi, transformacao) as Texture2D, new Rect(0,0,texi[0].width,texi[].height), new Vector2(0,0));

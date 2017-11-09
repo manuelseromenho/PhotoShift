@@ -9,15 +9,23 @@ public class testescript : MonoBehaviour {
 	public GameObject row;
 	public Texture2D texture;
 
-	int nrLinhas = 2;
-	int nrColunas = 3;
+	//public GetAndSetText tamanhoMatriz;
+	//public go tamanhoMatriz;
 
+	int nrLinhas = 2;
+	int nrColunas = 2;
 
 	private List<GameObject> images;
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+	{
+		//Debug.Log ("Linhas: " + InputsMatriz.linhasString + "\n" + "Colunas: " + InputsMatriz.colunasString);
+
+		nrLinhas = int.Parse (InputsMatriz.linhasString, System.Globalization.NumberStyles.Integer);
+		nrColunas = int.Parse (InputsMatriz.colunasString, System.Globalization.NumberStyles.Integer);
+
 		this.images = new List<GameObject> ();
+
 		for (int i = 0; i < nrLinhas; i++) 
 		{
 			var rowGO = Instantiate (row, this.transform); //instancia o espaço para a linha
@@ -29,6 +37,16 @@ public class testescript : MonoBehaviour {
 			}
 		}
 
+		Shifting ();
+
+	}
+
+	public void Shifting()
+	{
+		//this.images.RemoveAll ();
+
+
+
 		int intArrayMax = nrLinhas * nrColunas;
 		int[] intArray = new int[intArrayMax];
 
@@ -39,24 +57,23 @@ public class testescript : MonoBehaviour {
 		Shuffle(intArray);
 
 		var nrResources = Resources.LoadAll<Texture2D>("");
-//		for (int i = 0; i < nrResources.Length; i++) {
-//			this.images [i].GetComponent<RawImage> ().texture = nrResources [i]; //acede-se ao array images
-//		}
+		//		for (int i = 0; i < nrResources.Length; i++) {
+		//			this.images [i].GetComponent<RawImage> ().texture = nrResources [i]; //acede-se ao array images
+		//		}
 
-		for (int i = 0; i < intArrayMax; i++) {
+		for (int i = 0; i < intArrayMax; i++) 
+		{
 			this.images [i].GetComponent<RawImage> ().texture = nrResources [intArray[i]]; //acede-se ao array images
 		}
 
-//		for (int i = 0; i < intArrayMax; i++)
-//		{
-//			Debug.Log(intArray[i]);
-//		}
+		/*for (int i = 0; i < intArrayMax; i++)
+		{
+			Debug.Log(intArray[i]);
+		}*/
 
 
 
 	}
-
-
 
 
 	private void RandomUnique()
