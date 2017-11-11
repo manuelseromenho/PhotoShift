@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class testescript : MonoBehaviour {
 
@@ -15,26 +17,49 @@ public class testescript : MonoBehaviour {
 	int nrLinhas = 2;
 	int nrColunas = 2;
 
-	private List<GameObject> images;
+	public List<GameObject> images;
+	public static string helo;
 	// Use this for initialization
 	void Start () 
 	{
 		//Debug.Log ("Linhas: " + InputsMatriz.linhasString + "\n" + "Colunas: " + InputsMatriz.colunasString);
 
-		nrLinhas = int.Parse (InputsMatriz.linhasString, System.Globalization.NumberStyles.Integer);
-		nrColunas = int.Parse (InputsMatriz.colunasString, System.Globalization.NumberStyles.Integer);
+
+		if (!(InputsMatriz.linhasString == "")) 
+		{
+			nrLinhas = int.Parse (InputsMatriz.linhasString, System.Globalization.NumberStyles.Integer);
+		}
+
+		if (!(InputsMatriz.linhasString == ""))
+		{
+			nrColunas = int.Parse (InputsMatriz.colunasString, System.Globalization.NumberStyles.Integer);		
+		}
+
+
+
+
+
+
 
 		this.images = new List<GameObject> ();
 
 		for (int i = 0; i < nrLinhas; i++) 
 		{
 			var rowGO = Instantiate (row, this.transform); //instancia o espaço para a linha
+
 			for (int j = 0; j < nrColunas; j++) 
 			{
 				var imageGO = Instantiate (image, rowGO.transform); //instancia o espaço para a imagem, na linha
 				imageGO.GetComponent<RectTransform> ().localScale = new Vector3 (-1, 1, 1); //mirror
 				this.images.Add (imageGO);//insere as linhas e espaços na lista images (linhas e colunas...)
 			}
+		}
+
+		//clickaction
+		for (int i = 0; i < nrLinhas * nrColunas; i++) 
+		{
+			this.images[i].SetActive(true);
+			this.images[i].AddComponent<ClickAction> ();
 		}
 
 		Shifting ();
@@ -71,8 +96,6 @@ public class testescript : MonoBehaviour {
 			Debug.Log(intArray[i]);
 		}*/
 
-
-
 	}
 
 
@@ -105,4 +128,18 @@ public class testescript : MonoBehaviour {
 		}
 	}
 
+}
+
+public class ClickAction : MonoBehaviour, IPointerClickHandler
+{ 
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		// OnClick code goes here ...
+		Debug.Log("imagem clicada" + GetInstanceID());
+		ToastMessage mensagem = new ToastMessage ();
+
+		mensagem.showToastOnUiThread ("THIS IS SPARTA!!!");
+
+
+	}
 }
