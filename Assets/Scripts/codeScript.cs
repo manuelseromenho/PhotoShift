@@ -32,8 +32,8 @@ public class codeScript : MonoBehaviour {
 		j = 0;
 
 
-		int nrLinhas = 0;
-		int nrColunas = 0;
+		//int nrLinhas = 0;
+		//int nrColunas = 0;
 
 
 

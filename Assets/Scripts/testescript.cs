@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class testescript : MonoBehaviour {
 
@@ -9,26 +12,58 @@ public class testescript : MonoBehaviour {
 	public GameObject row;
 	public Texture2D texture;
 
-	int nrLinhas = 2;
-	int nrColunas = 3;
+	//public GetAndSetText tamanhoMatriz;
+	//public go tamanhoMatriz;
 
+	int nrLinhas = 1;
+	int nrColunas = 1;
 
-	private List<GameObject> images;
+	public List<GameObject> images;
+	//public static string helo;
 	// Use this for initialization
 	void Start () 
 	{
+		//Debug.Log ("Linhas: " + InputsMatriz.linhasString + "\n" + "Colunas: " + InputsMatriz.colunasString);
+
+
+		if (!(InputsMatriz.linhasString == "")) 
+		{
+			nrLinhas = int.Parse (InputsMatriz.linhasString, System.Globalization.NumberStyles.Integer);
+		}
+
+		if (!(InputsMatriz.colunasString == ""))
+		{
+			nrColunas = int.Parse (InputsMatriz.colunasString, System.Globalization.NumberStyles.Integer);		
+		}
+
+
+
+
+
+
+
 		this.images = new List<GameObject> ();
 
 		for (int i = 0; i < nrLinhas; i++) 
 		{
 			var rowGO = Instantiate (row, this.transform); //instancia o espaço para a linha
+
 			for (int j = 0; j < nrColunas; j++) 
 			{
 				var imageGO = Instantiate (image, rowGO.transform); //instancia o espaço para a imagem, na linha
-				imageGO.GetComponent<RectTransform> ().localScale = new Vector3 (-1, 1, 1); //mirror
+				//imageGO.GetComponent<RectTransform> ().localScale = new Vector3 (-1, 1, 1); //mirror
 				this.images.Add (imageGO);//insere as linhas e espaços na lista images (linhas e colunas...)
 			}
 		}
+
+		//clickaction
+		for (int i = 0; i < nrLinhas * nrColunas; i++) 
+		{
+			this.images[i].SetActive(true);
+			this.images[i].AddComponent<ClickImages> ();
+		}
+
+		Shifting ();
 
 	}
 
@@ -37,8 +72,8 @@ public class testescript : MonoBehaviour {
 		//this.images.RemoveAll ();
 
 
-
-		int intArrayMax = nrLinhas * nrColunas;
+		int intMatriz = nrLinhas * nrColunas;
+		int intArrayMax = 14;//nr de imagens nos resources;
 		int[] intArray = new int[intArrayMax];
 
 		for (int i = 0; i < intArrayMax; i++)
@@ -52,17 +87,24 @@ public class testescript : MonoBehaviour {
 		//			this.images [i].GetComponent<RawImage> ().texture = nrResources [i]; //acede-se ao array images
 		//		}
 
-		for (int i = 0; i < intArrayMax; i++) 
+		for (int i = 0; i < intMatriz; i++) 
 		{
-			this.images [i].GetComponent<RawImage> ().texture = nrResources [intArray[i]]; //acede-se ao array images
+			//this.images[i].GetComponent<RectTransform> ().localScale = new Vector3 (-1, 1, 1);
+			this.images[i].GetComponent<RawImage> ().texture = nrResources [intArray[i]]; //acede-se ao array images
+			//this.images[i].GetComponent<RawImage>().transform.localScale = new Vector3(1,1,1);
+
+			var myArray = new int[] { 0, 180 };
+			var mirrorVertical = myArray[Random.Range(0,myArray.Length)];
+			var mirrorHorizontal = myArray[Random.Range(0,myArray.Length)];
+			//var rotacao = myArray[Random.Range(0,myArray.Length)]; não necessário pois caso seja mirrorVertical e mirroHorizontal, dá o efeito da rotacao 180º
+
+			this.images[i].GetComponent<RectTransform>().localEulerAngles = new Vector3(mirrorVertical, mirrorHorizontal, 0);
 		}
 
 		/*for (int i = 0; i < intArrayMax; i++)
 		{
 			Debug.Log(intArray[i]);
 		}*/
-
-
 
 	}
 
@@ -97,3 +139,4 @@ public class testescript : MonoBehaviour {
 	}
 
 }
+
