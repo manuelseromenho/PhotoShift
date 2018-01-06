@@ -10,21 +10,17 @@ public class testescript : MonoBehaviour {
 
 	public GameObject image;
 	public GameObject row;
-	public Texture2D texture;
-
 	//public GetAndSetText tamanhoMatriz;
 	//public go tamanhoMatriz;
 
-	int nrLinhas = 1;
-	int nrColunas = 1;
+	private int nrLinhas = 2;
+	private int nrColunas = 4;
 
 	public List<GameObject> images;
-	//public static string helo;
-	// Use this for initialization
+
 	void Start () 
 	{
 		//Debug.Log ("Linhas: " + InputsMatriz.linhasString + "\n" + "Colunas: " + InputsMatriz.colunasString);
-
 
 		if (!(InputsMatriz.linhasString == "")) 
 		{
@@ -35,11 +31,6 @@ public class testescript : MonoBehaviour {
 		{
 			nrColunas = int.Parse (InputsMatriz.colunasString, System.Globalization.NumberStyles.Integer);		
 		}
-
-
-
-
-
 
 
 		this.images = new List<GameObject> ();
@@ -56,24 +47,35 @@ public class testescript : MonoBehaviour {
 			}
 		}
 
+		int matrix = nrLinhas * nrColunas;
 		//clickaction
-		for (int i = 0; i < nrLinhas * nrColunas; i++) 
+		for (int k = 0; k < matrix; k++) 
 		{
-			this.images[i].SetActive(true);
-			this.images[i].AddComponent<ClickImages> ();
+			this.images[k].SetActive(true);
+			Debug.Log (this.images [k] + " is active!");
+			//this.images[k].AddComponent<ClickImages> ();
 		}
+
+
 
 		Shifting ();
 
+		//Debug.Log("MAD MANUEL"+ gameObject.GetInstanceID());
 	}
 
 	public void Shifting()
 	{
 		//this.images.RemoveAll ();
 
+		var nrResources = Resources.LoadAll<Texture2D>("");
+		Resources.UnloadUnusedAssets();
 
 		int intMatriz = nrLinhas * nrColunas;
-		int intArrayMax = 14;//nr de imagens nos resources;
+		int total = nrResources.Length;
+		//var total = nrResources.Distinct().ToList().Count;
+		//Debug.Log("Image Length= " + total);
+
+		int intArrayMax = total;//nr de imagens nos resources;
 		int[] intArray = new int[intArrayMax];
 
 		for (int i = 0; i < intArrayMax; i++)
@@ -82,23 +84,26 @@ public class testescript : MonoBehaviour {
 		}
 		Shuffle(intArray);
 
-		var nrResources = Resources.LoadAll<Texture2D>("");
+
+
 		//		for (int i = 0; i < nrResources.Length; i++) {
 		//			this.images [i].GetComponent<RawImage> ().texture = nrResources [i]; //acede-se ao array images
 		//		}
 
+
+		//Aqui é inserido na lista de images um conjunto de imagens aleatórias, em que também é aleatório o seu Mirror Vertical/Horizontal e Rotação"
 		for (int i = 0; i < intMatriz; i++) 
 		{
-			//this.images[i].GetComponent<RectTransform> ().localScale = new Vector3 (-1, 1, 1);
 			this.images[i].GetComponent<RawImage> ().texture = nrResources [intArray[i]]; //acede-se ao array images
-			//this.images[i].GetComponent<RawImage>().transform.localScale = new Vector3(1,1,1);
 
-			var myArray = new int[] { 0, 180 };
+			/*cria-se aqui um array com dois valores, 0 ou 180, que vão servir de base para as duas possibilidades de "mirrorVertical" e "mirrorHorizontal". Com isto possibilitamos várias combinações de mirror.*/
+			var myArray = new int[] { -1, 1 };//array 
 			var mirrorVertical = myArray[Random.Range(0,myArray.Length)];
 			var mirrorHorizontal = myArray[Random.Range(0,myArray.Length)];
-			//var rotacao = myArray[Random.Range(0,myArray.Length)]; não necessário pois caso seja mirrorVertical e mirroHorizontal, dá o efeito da rotacao 180º
-
-			this.images[i].GetComponent<RectTransform>().localEulerAngles = new Vector3(mirrorVertical, mirrorHorizontal, 0);
+			this.images[i].GetComponent<RectTransform>().localScale = new Vector3(mirrorVertical, mirrorHorizontal, 0);
+			//this.images[i].GetComponent<RectTransform>().localEulerAngles = new Vector3(mirrorVertical, mirrorHorizontal, 0);
+			//this.images [i].GetComponent<RawImage> ().texture = this.images [i].GetComponent<RectTransform> ().localEulerAngles;
+			//this.images[i].GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(mirrorVertical, mirrorHorizontal, 0));
 		}
 
 		/*for (int i = 0; i < intArrayMax; i++)
@@ -108,8 +113,8 @@ public class testescript : MonoBehaviour {
 
 	}
 
-
-	private void RandomUnique()
+	//cria e preenche um array com valores inteiros, com o tamanho indicado pelo utilizador linhasxcolunas
+	private void RandomUnique() 
 	{
 		int intArrayMax = nrLinhas * nrColunas;
 		int[] intArray = new int[intArrayMax];
@@ -127,6 +132,7 @@ public class testescript : MonoBehaviour {
 
 	}
 
+	//metodo utilizado para baralhar um conjunto de numero dentro de um array
 	public void Shuffle(int[] obj)
 	{
 		for (int i = 0; i < obj.Length; i++)
@@ -137,6 +143,12 @@ public class testescript : MonoBehaviour {
 			obj[objIndex] = temp;
 		}
 	}
+
+	public void ClickToChange()
+	{
+		Shifting ();
+	}
+
 
 }
 

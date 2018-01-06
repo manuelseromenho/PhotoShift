@@ -6,20 +6,13 @@ using UnityEngine.UI;
 
 public class go : MonoBehaviour {
 
-	public string linhasString;
-	public string colunasString;
-
-	//public InputField linhas_field;
-	//public InputField colunas_field;
-
+	string linhasString;
+	string colunasString;
 
 	public GameObject linhas_gobject;
 	public GameObject colunas_gobject;
 
 
-	//public GetAndSetText setget;
-
-	// Use this for initialization
 	void Start () 
 	{
 		PlayerPrefs.SetString ("lastLoadedScene", SceneManager.GetActiveScene ().name);
@@ -44,11 +37,11 @@ public class go : MonoBehaviour {
 		SceneManager.LoadScene("matriz");
 	}
 
-
 }
 
-public class InputsMatriz //guardar valores para outra Scene 
+public class InputsMatriz //guarda valores para outra Scene 
 {
 	public static string linhasString;
 	public static string colunasString;
 }
+
