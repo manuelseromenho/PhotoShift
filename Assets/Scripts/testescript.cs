@@ -49,12 +49,14 @@ public class testescript : MonoBehaviour {
 
 		int matrix = nrLinhas * nrColunas;
 		//clickaction
-		for (int k = 0; k < matrix; k++) 
+
+		//anteriormente usava este codigo para activar todas as imagens de maneira a poder interagir com estas, mas agora já não é necessário.
+		/*for (int k = 0; k < matrix; k++) 
 		{
 			this.images[k].SetActive(true);
 			Debug.Log (this.images [k] + " is active!");
 			//this.images[k].AddComponent<ClickImages> ();
-		}
+		}*/
 
 
 
