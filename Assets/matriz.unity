@@ -311,7 +311,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 467749352}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f07e4406c1d3eaf468f8194559cfcd5d, type: 3}
   m_Name: 
@@ -319,6 +319,8 @@ MonoBehaviour:
   image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
   row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
   images: []
+  shuffled: 
+  path: Assets/Resources/dados.txt
 --- !u!1 &823056075
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +489,17 @@ MonoBehaviour:
       - m_Target: {fileID: 2006736983}
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2006736984}
+        m_MethodName: closeText
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -828,6 +841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2006736982}
   - component: {fileID: 2006736983}
+  - component: {fileID: 2006736984}
   m_Layer: 0
   m_Name: Quadro1
   m_TagString: Untagged
@@ -861,6 +875,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a136d0ca33403be46996cd75ca41d5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2006736984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006736981}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07e4406c1d3eaf468f8194559cfcd5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  row: {fileID: 0}
+  images: []
+  shuffled: 
+  path: Assets/Resources/dados.txt
 --- !u!1 &2126520994
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +942,8 @@ MonoBehaviour:
   image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
   row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
   images: []
+  shuffled: 
+  path: Assets/Resources/dados.txt
 --- !u!114 &2126520997
 MonoBehaviour:
   m_ObjectHideFlags: 0

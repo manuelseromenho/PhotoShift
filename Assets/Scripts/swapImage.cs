@@ -13,6 +13,9 @@ public class swapImage : MonoBehaviour
 	int firstKey = 0;
 	int secondKey = 0;
 	public testescript testeScript;
+	Vector3 first_scale;
+	Vector3 second_scale;
+	Vector3 tempo_scale;
 
 	string[] keys = {"q","w","e","r","t","y","u", "a","s","d","f","g", "h", "j"};
 
@@ -98,8 +101,13 @@ public class swapImage : MonoBehaviour
 	void swapImages(int first, int second)
 	{
 		var tempo = this.testeScript.images [first].GetComponent<RawImage> ().texture;
+		tempo_scale = this.testeScript.images [first].GetComponent<RectTransform> ().localScale;
 		this.testeScript.images[first].GetComponent<RawImage> ().texture = this.testeScript.images[second].GetComponent<RawImage> ().texture;
+		this.testeScript.images[first].GetComponent<RectTransform> ().localScale = this.testeScript.images[second].GetComponent<RectTransform> ().localScale;
 		this.testeScript.images [second].GetComponent<RawImage> ().texture = tempo;	
+		this.testeScript.images [second].GetComponent<RectTransform> ().localScale = tempo_scale;	
+
 		tempo = null;
+
 	}
 }
