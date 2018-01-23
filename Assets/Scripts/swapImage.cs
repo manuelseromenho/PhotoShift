@@ -70,14 +70,14 @@ public class swapImage : MonoBehaviour
 			if (firstUp == true && secondUp == false && Input.GetKeyDown(key)) //apanha a segunda tecla (referente à lista de teclas)
 			{
 				keynr = System.Array.IndexOf (keys, key);
-				Debug.Log (key + "second keynr" + keynr);
+				//Debug.Log (key + "second keynr" + keynr);
 				secondUp = true;
 				secondKey = keynr;
 			}
 			if (firstUp == false && Input.GetKeyDown(key)) //apanha a primeira tecla (referente à lista de teclas)
 			{
 				keynr = System.Array.IndexOf (keys, key);
-				Debug.Log(key + "first keynr" + keynr);
+				//Debug.Log(key + "first keynr" + keynr);
 				firstUp = true;
 				firstKey = keynr;
 			}

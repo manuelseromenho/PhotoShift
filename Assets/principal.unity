@@ -1431,7 +1431,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pressione \"Go!\" para come\xE7ar!"
+  m_Text: PHOTO SHIFT
 --- !u!222 &1343334008
 CanvasRenderer:
   m_ObjectHideFlags: 0

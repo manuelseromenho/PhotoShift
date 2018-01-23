@@ -320,7 +320,6 @@ MonoBehaviour:
   row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
   images: []
   shuffled: 
-  path: Assets/Resources/dados.txt
 --- !u!1 &823056075
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +550,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1528028448}
-  - component: {fileID: 1528028449}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -577,17 +575,6 @@ RectTransform:
   m_AnchoredPosition: {x: 298, y: 545}
   m_SizeDelta: {x: 330, y: 212.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1528028449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1528028447}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf5381899f6f04542803e820087c0be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1548746602
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,11 +873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07e4406c1d3eaf468f8194559cfcd5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  row: {fileID: 0}
+  image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
+  row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
   images: []
   shuffled: 
-  path: Assets/Resources/dados.txt
 --- !u!1 &2126520994
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +929,6 @@ MonoBehaviour:
   row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
   images: []
   shuffled: 
-  path: Assets/Resources/dados.txt
 --- !u!114 &2126520997
 MonoBehaviour:
   m_ObjectHideFlags: 0
