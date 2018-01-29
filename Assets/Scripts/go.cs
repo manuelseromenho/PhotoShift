@@ -80,6 +80,13 @@ public class go : MonoBehaviour {
 		SceneManager.LoadScene("matriz");
 	}
 
+	public void goPhotoMatriz()
+	{
+		InputsMatriz.linhasInt = 3;
+		InputsMatriz.colunasInt = 2;
+		SceneManager.LoadScene("photoMatriz");
+	}
+
 }
 
 public class InputsMatriz //guarda valores para outra Scene 

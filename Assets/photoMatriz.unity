@@ -108,6 +108,74 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &66339469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 66339470}
+  - component: {fileID: 66339472}
+  - component: {fileID: 66339471}
+  m_Layer: 5
+  m_Name: frame
+  m_TagString: Slot1
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &66339470
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66339469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 894891819}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -458, y: -149}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &66339471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66339469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &66339472
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66339469}
 --- !u!1 &130712559
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,9 +261,8 @@ GameObject:
   - component: {fileID: 467749356}
   - component: {fileID: 467749355}
   - component: {fileID: 467749354}
-  - component: {fileID: 467749357}
   m_Layer: 5
-  m_Name: shift_Button
+  m_Name: showPhoto_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +327,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2126520996}
-        m_MethodName: Shifting
+        m_MethodName: OpenGalleryButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -305,21 +372,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 467749352}
---- !u!114 &467749357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 467749352}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07e4406c1d3eaf468f8194559cfcd5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
-  row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
-  images: []
-  shuffled: 
 --- !u!1 &823056075
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +490,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 130712560}
+  - {fileID: 66339470}
   m_Father: {fileID: 1548746606}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -768,7 +821,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shift!
+  m_Text: Select Photo
 --- !u!222 &1768492503
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -784,7 +837,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2006736982}
   - component: {fileID: 2006736983}
-  - component: {fileID: 2006736984}
   m_Layer: 0
   m_Name: Quadro1
   m_TagString: Untagged
@@ -818,21 +870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862a9ea3d048ec946893087ddf49ccc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2006736984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2006736981}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07e4406c1d3eaf468f8194559cfcd5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
-  row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
-  images: []
-  shuffled: 
 --- !u!1 &2126520994
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,8 +879,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2126520995}
   - component: {fileID: 2126520997}
-  - component: {fileID: 2126520996}
   - component: {fileID: 2126520999}
+  - component: {fileID: 2126520996}
   m_Layer: 5
   m_Name: Holder
   m_TagString: Untagged
@@ -877,13 +914,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2126520994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07e4406c1d3eaf468f8194559cfcd5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7892c90765fb92247960a5193e23081d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
-  row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
+  frame: {fileID: 66339471}
+  Image: {fileID: 1561524223197692, guid: fd4eeed8d8af9b94d845c69092d2a21f, type: 2}
+  Row: {fileID: 1349705247913024, guid: 47b8f014167115240948bd18e4cd38f6, type: 2}
+  intMatriz: 0
+  intArray: 
   images: []
-  shuffled: 
+  slices: []
 --- !u!114 &2126520997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,4 +957,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1700cbad2e5614c8be0165a9341b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testeScript: {fileID: 2126520996}
+  testeScript: {fileID: 0}

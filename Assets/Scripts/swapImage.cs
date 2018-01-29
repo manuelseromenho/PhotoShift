@@ -12,7 +12,7 @@ public class swapImage : MonoBehaviour
 	bool secondUp = false;
 	int firstKey = 0;
 	int secondKey = 0;
-	public testescript testeScript;
+	public maincodeScript testeScript;
 	Vector3 first_scale;
 	Vector3 second_scale;
 	Vector3 tempo_scale;
