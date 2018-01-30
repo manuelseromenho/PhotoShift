@@ -6,6 +6,27 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/*!
+* \file
+* \brief Na classe swapImage é implementada a funcionalidade de trocar imagens utilizado o teclado.
+* \details Nesta classe é implementada a funcionalidade de trocar imagens utilizando o teclado,
+* utilizando as teclas "q","w","e","r","t","y","u", "a","s","d","f","g", "h","j", estando estas
+* numeradas de 1 a 14. 
+* \author Manuel Seromenho
+* \author Valter António
+* \date 29 Janeiro 2018
+* \bug sem erros detetados
+* \warning nenhum warning
+* \version 1.0
+* \copyright GNU Public License.
+*/
+
+/// <summary>
+/// Nesta classe é implementada a funcionalidade de trocar imagens utilizando o teclado,
+/// utilizando as teclas "q","w","e","r","t","y","u", "a","s","d","f","g", "h","j", estando estas
+/// numeradas de 1 a 14. 
+/// São implementados os métodos: Update(), swapImages()
+/// </summary>
 public class swapImage : MonoBehaviour
 {
 	bool firstUp = false;
@@ -17,56 +38,19 @@ public class swapImage : MonoBehaviour
 	Vector3 second_scale;
 	Vector3 tempo_scale;
 
-	string[] keys = {"q","w","e","r","t","y","u", "a","s","d","f","g", "h", "j"};
+	string[] keys = {"q","w","e","r","t","y","u", "a","s","d","f","g", "h","j"};
 
 
-	void Start () 
-	{
-		//		this.images = new List<GameObject> ();
-		//
-		//		for (int i = 0; i < nrLinhas; i++) 
-		//		{
-		//			var rowGO = Instantiate (row, this.transform); //instancia o espaço para a linha
-		//
-		//			for (int j = 0; j < nrColunas; j++) 
-		//			{
-		//				var imageGO = Instantiate (image, rowGO.transform); //instancia o espaço para a imagem, na linha
-		//				//imageGO.GetComponent<RectTransform> ().localScale = new Vector3 (-1, 1, 1); //mirror
-		//				this.images.Add (imageGO);//insere as linhas e espaços na lista images (linhas e colunas...)
-		//			}
-		//		}
-		//
-		//		//clickaction
-		//		for (int i = 0; i < (nrLinhas * nrColunas); i++) 
-		//		{
-		//			this.images[i].SetActive(true);
-		//			//this.images[i].AddComponent<ClickImages> ();
-		//		}
-		//
-		//		var nrResources = Resources.LoadAll<Texture2D>("");
-		//		Resources.UnloadUnusedAssets();
-		//
-		//		int intMatriz = nrLinhas * nrColunas;
-		//		//int total = nrResources.Length;
-		//
-		//
-		//		for (int i = 0; i < intMatriz; i++) 
-		//		{
-		//			this.images[i].GetComponent<RawImage> ().texture = nrResources [i]; //acede-se ao array images
-		//		}
-		//
-		//		//Debug.Log("MAD MANUEL"+ gameObject.GetInstanceID());
-
-	}
-
+	/// <summary>
+	/// Método Update: este método atualiza o interface gráfico, após sererem premidas 2 teclas,
+	/// sendo a primeira tecla a primeira imagem, e a segunda tecla a segunda imagem a serem trocadas.
+	/// </summary>
 	void Update()
 	{
 		int keynr = 0;
 
 		foreach (string key in keys) 
 		{
-			//			if(key != null)
-			//			{
 			if (firstUp == true && secondUp == false && Input.GetKeyDown(key)) //apanha a segunda tecla (referente à lista de teclas)
 			{
 				keynr = System.Array.IndexOf (keys, key);
@@ -81,10 +65,6 @@ public class swapImage : MonoBehaviour
 				firstUp = true;
 				firstKey = keynr;
 			}
-			//}
-			//else{Debug.Log ("tecla errada");}
-
-			//keynr++;
 		} 
 
 
@@ -98,6 +78,13 @@ public class swapImage : MonoBehaviour
 		}
 	}
 
+
+	/// <summary>
+  	/// O método swapImages():
+  	/// - é utilizado para trocar as imagens previamente seleccionadas da matriz.
+  	/// </summary>
+  	/// <param name="first">Este parametro indica a posição da primeira imagem</param>
+  	/// <param name="second">Este parametro indica a posição da segunda imagem</param>
 	void swapImages(int first, int second)
 	{
 		var tempo = this.testeScript.images [first].GetComponent<RawImage> ().texture;

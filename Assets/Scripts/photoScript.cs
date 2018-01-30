@@ -5,36 +5,48 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
-//NOTE: we're using LukeWaffel.AndroidGallery, without this it won't work
 using LukeWaffel.AndroidGallery;
 
-//using UnityEditor;
-//using System.IO;
+/*!
+* \file
+* \brief Na classe photoScript é implementada a funcionalidade "puzzle".
+* \details Nesta classe é implementada e funcionalidade "puzzle", onde o utilizador poderá carregar uma imagem da galeria "android", a foto é cortada e baralhada, de maneira o utilizador interagir e voltar a colocar a foto na disposição correta.
+* \author Manuel Seromenho
+* \author Valter António
+* \date 29 Janeiro 2018
+* \bug sem erros detetados
+* \warning nenhum warning
+* \version 1.0
+* \copyright GNU Public License.
+*/
 
-
+/// <summary>
+/// Classe photoScript: nesta classe é implementada a funcionalidade do lançamento aleatório com comparação dos lançamentos anteriores.
+/// São implementados os métodos: Start(), Shifting(), Shuffle()
+/// </summary>
 public class photoScript : MonoBehaviour {
 
-	//[Header ("References")]
 	public Image frame;
-	//public RawImage TextFrame;
 	public GameObject Image;
 	public GameObject Row;
-	//public GetAndSetText tamanhoMatriz;
-	//public go tamanhoMatriz;
-
-	private int nrLinhas = 3;
-	private int nrColunas = 2;
 	public int intMatriz;
 	public int[] intArray;
-
+	public List<GameObject> images;
+	public Texture2D[] slices;
+	
+	private int nrLinhas = 3;
+	private int nrColunas = 2;
 	private int i = 0;
 	private int j = 0;
 
-	public List<GameObject> images;
-	public Texture2D[] slices;
 
 
+	//! Método Start
+	/**
+	* método onde é:
+  	* - é inicializada a lista "images" com espaços para serem populados por imagens mais tarde.
+	* \return void
+	*/
 	void Start()
 	{
 		intMatriz = nrLinhas*nrColunas;
@@ -54,18 +66,23 @@ public class photoScript : MonoBehaviour {
 
 	}
 
-	//This function is called by the Button
+	//! Método OpenGalleryButton
+	/**
+	* Este método é executado através do botão "Select Photo".
+	* \return void
+	*/
 	public void OpenGalleryButton()
 	{
-		//NOTE: we're using LukeWaffel.AndroidGallery (As seen at the top of this script), without this it won't work
-		//This line of code opens the Android image picker, the parameter is a callback function the AndroidGallery script will call when the image has finished loading
+		///NOTE: we're using LukeWaffel.AndroidGallery (As seen at the top of this script), without this it won't work
+		///This line of code opens the Android image picker, the parameter is a callback function the AndroidGallery script will call when the image has finished loading
 		AndroidGallery.Instance.OpenGallery (ImageLoaded);
-
-
-
 	}
 
-	//This is the callback function we created
+	//! Método ImageLoaded
+	/**
+	* este método é executado através do botão "Select Photo". Método callback que serve de parametro a AndroidGallery.Instance.OpenGallery
+	* \return void
+	*/
 	public void ImageLoaded()
 	{
 		Debug.Log("The image has succesfully loaded!");
@@ -74,18 +91,16 @@ public class photoScript : MonoBehaviour {
 	}
 
 
-
-
+	/// <summary>
+  	/// O método Shifting():
+  	/// 1º Selecionar foto
+	///	2º Cortar foto em várias partes e guardar as partes num array de texturas
+	///	3º Criar um array de inteiros para criar uma situação de random
+	///	4ª Mostrar partes da imagem com efeito random
+  	/// </summary>
 	public void Shifting()
 	{
-		//1º Selecionar foto
-		//2º Cortar foto em várias partes e guardar as partes num array de texturas
-		//3º Criar um array de inteiros para criar uma situação de random
-		//4ª Mostrar partes da imagem com efeito random
-
-		//Debug.Log ("intMatriz = " + intMatriz); Devolve o valor correto ...
-		//intMatriz = nrLinhas * nrColunas;
-
+		
 		int[] intArray = new int[intMatriz];
 
 		/****************************************
@@ -100,59 +115,26 @@ public class photoScript : MonoBehaviour {
 
 		Shuffle(intArray);
 
-		//You can put anything in the callback function. You can either just grab the image, or tell your other scripts the custom image is available
-
-
 		GameObject tmpGO = GameObject.FindGameObjectWithTag("Slot1");
 		Sprite sprity = tmpGO.GetComponent<Image> ().sprite;
-		//Sprite sprity = frame.sprite;
 
-
-		//textFrame.frame.sprite = AndroidGallery.Instance.GetSprite();
-
-		//int xpto = (int)textFrame.frame.sprite.textureRect.x;
-		//int ypto = (int)textFrame.frame.sprite.textureRect.y;
 		int xpto = (int)sprity.textureRect.x;
 		int ypto = (int)sprity.textureRect.y;
-
-		//int xpto_width = (int)textFrame.frame.sprite.textureRect.width;
-		//int ypto_height = (int)textFrame.frame.sprite.textureRect.height;
 		int xpto_width = (int)sprity.textureRect.width;
 		int ypto_height = (int)sprity.textureRect.height;
+		int k = 0;
 
-
-		Debug.Log ("Posições -> XPTO X: " + xpto + "YPTO: " + ypto);
-		Debug.Log("Tamanhos ->xpto_width: " + xpto_width + " ypto_height = " + ypto_height);
-
-		/*int spriteWidth = (int)frame.sprite.rect.width;
-		int spriteHeight = (int)frame.sprite.rect.height;
-		Debug.Log("SpriteWidth: " + spriteWidth + " SpriteHeight = " + spriteHeight);*/
+		//Debug.Log ("Posições -> XPTO X: " + xpto + "YPTO: " + ypto);
+		//Debug.Log("Tamanhos ->xpto_width: " + xpto_width + " ypto_height = " + ypto_height);
 
 		int sliceWidth = xpto_width / nrColunas;
 		int sliceHeight = ypto_height / nrLinhas;
-		Debug.Log("SliceWidth: " + sliceWidth + " SliceHeight = " + sliceHeight);
-
-		int k = 0;
+		//Debug.Log("SliceWidth: " + sliceWidth + " SliceHeight = " + sliceHeight);
 
 		slices = new Texture2D[intMatriz];
-		//Texture2D slice1st;
-
 
 		var croppedTexture = new Texture2D (sliceWidth, sliceHeight);
-		/*var pixels = sprity.texture.GetPixels(0, 0, sliceWidth, sliceHeight );
-		croppedTexture.SetPixels( pixels );
-		croppedTexture.Apply();
-		slices [0] = croppedTexture;*/
-		//images [0].GetComponent<RawImage> ().texture = croppedTexture;
 
-		/*croppedTexture = new Texture2D (sliceWidth, sliceHeight);
-		pixels = sprity.texture.GetPixels(0, sliceHeight, sliceWidth, sliceHeight );
-		croppedTexture.SetPixels( pixels );
-		croppedTexture.Apply();
-		slices [1] = croppedTexture;*/
-		//this.images [1].GetComponent<RawImage> ().texture = croppedTexture;
-
-		//Debug.Log ("TESTE TOU AQUI");
 
 		for (i = 0; i < nrColunas; i++) 
 		{
@@ -166,38 +148,29 @@ public class photoScript : MonoBehaviour {
 					sliceWidth, 
 					sliceHeight );
 
-				//				var pixels = frame.sprite.texture.GetPixels( 
-				//					xpto, 
-				//					ypto,
-				//					sliceWidth, 
-				//					sliceHeight );
-
-
 				croppedTexture.SetPixels( pixels );
 				croppedTexture.Apply();
 
-
 				slices [k] = croppedTexture;//guarda a slice no array de texturas
-				//slice1st = croppedTexture;
 				k = k + 1;
 			}
 		}
 
 
-
-
-
 		for (i = 0; i < intMatriz; i++) 
 		{
-			//Aqui é inserido na lista de "images" um conjunto de imagens aleatórias, em que também é aleatório o seu Mirror Vertical/Horizontal e Rotação
-			//this.images[i].GetComponent<RawImage> ().texture = slices [intArray[i]]; //acede-se ao array images
-			images[i].GetComponent<RawImage> ().texture = slices[intArray[i]]; //acede-se ao array images
+			//Aqui é populado as texturas da lista de imagens, com as "slices" anteriormente capturadas
+			images[i].GetComponent<RawImage> ().texture = slices[intArray[i]]; 
 		}
 
 	}
 
-
-	//metodo utilizado para baralhar um conjunto de numero dentro de um array
+	/// <summary>
+  	/// O método Shuffle():
+  	/// - é utilizado para baralhar um conjunto de numero dentro de um array, 
+  	/// que posteriormente será utilizado para criar aleatoriadade às imagens.
+  	/// </summary>
+  	/// <param name="obj">O método Shuffle recebe como parametro um array de inteiros</param>
 	public void Shuffle(int[] obj)
 	{
 		for (i = 0; i < obj.Length; i++)

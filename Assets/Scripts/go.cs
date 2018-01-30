@@ -4,61 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*!
+* \file
+* \brief A classe go é utilizada para dar funcionalidade aos botões.
+* \details A classe go é utilizada para dar funcionalidade aos botões. Botões de tamanho de matriz e para o modo "jogo".
+* \author Manuel Seromenho
+* \author Valter António
+* \date 29 Janeiro 2018
+* \bug sem erros detetados
+* \warning nenhum warning
+* \version 1.0
+* \copyright GNU Public License.
+*/
+
+/// <summary>
+/// Classe go: É utilizada para dar funcionalidade aos botões. Botões de tamanho de matriz e para o modo "jogo".
+/// São implementados os métodos: go3x2(), go4x3(), go7x2(), goPhotoMatriz.
+/// </summary>
 public class go : MonoBehaviour {
 
-	//string linhasString;
-	//string colunasString;
-
-	//public GameObject linhas_gobject;
-	//public GameObject colunas_gobject;
-
-	//public int nrLinhas = 2;
-	//public int nrColunas = 4;
-
-
-	/*void Start () 
-	{
-		PlayerPrefs.SetString ("lastLoadedScene", SceneManager.GetActiveScene ().name);
-
-		InputField linhas_field;
-		InputField colunas_field;
-
-		linhas_gobject = GameObject.Find ("linhas_field");
-		colunas_gobject = GameObject.Find ("colunas_field");
-
-		linhas_field = linhas_gobject.GetComponent<InputField>();
-		colunas_field = colunas_gobject.GetComponent<InputField> ();
-
-		linhasString = linhas_field.text.ToString ();
-		colunasString = colunas_field.text.ToString();
-
-		InputsMatriz.linhasString = linhasString;
-		InputsMatriz.colunasString = colunasString;
-
-		//Debug.Log ("Linhas: " + linhasString  + "\n" + "Colunas: " + colunasString);
-
-		if (!(InputsMatriz.linhasString == "")) 
-		{
-			nrLinhas = int.Parse (InputsMatriz.linhasString, System.Globalization.NumberStyles.Integer);
-		}
-
-		if (!(InputsMatriz.colunasString == ""))
-		{
-			nrColunas = int.Parse (InputsMatriz.colunasString, System.Globalization.NumberStyles.Integer);		
-		}
-
-		int matrix = nrLinhas * nrColunas;
-		var nrResources = Resources.LoadAll<Texture2D>("");
-		Resources.UnloadUnusedAssets();
-		int intArrayMax = nrResources.Length;
-
-		if(matrix > intArrayMax)
-		{
-		}
-		SceneManager.LoadScene("matriz");
-	}*/
-
-
+	/// <summary>
+  	/// O método go3x2():
+  	/// - é utilizado para dar funcionalidade ao botão 3x2, de maneira a abrir a matriz com 3 linhas e 2 colunas.
+  	/// </summary>
 	public void go3x2()
 	{
 		InputsMatriz.linhasInt = 3;
@@ -66,6 +34,10 @@ public class go : MonoBehaviour {
 		SceneManager.LoadScene("matriz");
 	}
 
+	/// <summary>
+  	/// O método go4x3():
+  	/// - é utilizado para dar funcionalidade ao botão 4x3, de maneira a abrir a matriz com 4 linhas e 3 colunas.
+  	/// </summary>
 	public void go4x3()
 	{
 		InputsMatriz.linhasInt = 4;
@@ -73,6 +45,10 @@ public class go : MonoBehaviour {
 		SceneManager.LoadScene("matriz");
 	}
 
+	/// <summary>
+  	/// O método go7x2():
+  	/// - é utilizado para dar funcionalidade ao botão 7x2, de maneira a abrir a matriz com 7 linhas e 2 colunas.
+  	/// </summary>
 	public void go7x2()
 	{
 		InputsMatriz.linhasInt = 7;
@@ -80,6 +56,10 @@ public class go : MonoBehaviour {
 		SceneManager.LoadScene("matriz");
 	}
 
+	/// <summary>
+  	/// O método goPhotoMatriz():
+  	/// - é utilizado para dar funcionalidade ao botão de jogo, de maneira a abrir a matriz com 3 linhas e 2 colunas.
+  	/// </summary>
 	public void goPhotoMatriz()
 	{
 		InputsMatriz.linhasInt = 3;
@@ -89,10 +69,11 @@ public class go : MonoBehaviour {
 
 }
 
-public class InputsMatriz //guarda valores para outra Scene 
+/// <summary>
+/// Classe InputsMatriz: Guarda valores para outra Scene 
+/// </summary>
+public class InputsMatriz 
 {
-	//public static string linhasString;
-	//public static string colunasString;
 	public static int linhasInt;
 	public static int colunasInt;
 }

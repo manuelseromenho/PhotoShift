@@ -6,22 +6,43 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/*!
+* \file
+* \brief Na classe SwapImageTouch é implementada a funcionalidade de trocar imagens utilizado o toque ou click de rato.
+* \details Nesta classe é implementada a funcionalidade de trocar imagens 
+* utilizando o toque num ecran de telemovel Android, ou o click de rato num computador Windows.
+* \author Manuel Seromenho
+* \author Valter António
+* \date 29 Janeiro 2018
+* \bug sem erros detetados
+* \warning nenhum warning
+* \version 1.0
+* \copyright GNU Public License.
+*/
 
+/// <summary>
+/// Nesta classe é implementada a funcionalidade de trocar imagens 
+/// utilizando o toque num ecran de telemovel Android, ou o click de rato num computador Windows.
+/// São implementados os métodos: OnPointerClick()
+/// </summary>
 public class SwapImageTouch : MonoBehaviour, IPointerClickHandler//, IPointerDownHandler, 
 {
 	int flag = 0;
-	//string tempo_name="";
 	Texture teste1;
 	Texture teste2;
 	GameObject teste3;
 	Vector3 teste1_scale;
 	Vector3 teste2_scale;
 
+	/// <summary>
+  	/// O método OnPointerClick():
+  	/// - é utilizado para selecionar as imagens a serem trocadas e trocar estas posteriormente.
+  	/// </summary>
+  	/// <param name="eventData">Este parametro do tipo PointerEventData, associa o evento do "toque" ou "click de rato"</param>
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		if(flag == 0)
 		{
-			//tempo_name = eventData.pointerCurrentRaycast.gameObject.name;
 			teste1 = eventData.pointerCurrentRaycast.gameObject.GetComponent<RawImage> ().texture;//associa textura da primeira imagem clicada
 			teste1_scale = eventData.pointerCurrentRaycast.gameObject.GetComponent<RectTransform>().localScale;//associa escala da primeira imagem clicada
 			teste3 = eventData.pointerCurrentRaycast.gameObject;
@@ -40,40 +61,7 @@ public class SwapImageTouch : MonoBehaviour, IPointerClickHandler//, IPointerDow
 			flag = 0;
 		}
 
-
 		//Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
-
-	}
-
-}
-
-/*
-public class SwapImageTouch : MonoBehaviour, IPointerClickHandler//, IPointerDownHandler, 
-{
-	int flag = 0;
-	//string tempo_name="";
-	Texture teste1;
-	Texture teste2;
-	GameObject teste3;
-
-	public void OnPointerClick(PointerEventData eventData)
-	{
-		if(flag == 0)
-		{
-			//tempo_name = eventData.pointerCurrentRaycast.gameObject.name;
-			teste1 = eventData.pointerCurrentRaycast.gameObject.GetComponent<RawImage> ().texture;
-			teste3 = eventData.pointerCurrentRaycast.gameObject;
-			flag = 1;
-		}
-		else
-		{
-			teste2 = eventData.pointerCurrentRaycast.gameObject.GetComponent<RawImage> ().texture;
-			eventData.pointerCurrentRaycast.gameObject.GetComponent<RawImage> ().texture = teste1;
-			teste3.GetComponent<RawImage>().texture = teste2;
-			flag = 0;
-		}
-
-		Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
 	}
 }
-*/
+
